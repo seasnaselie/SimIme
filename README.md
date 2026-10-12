@@ -7,7 +7,7 @@
 - 运行环境：Windows + .NET Framework 4.8（Win10/Win11 自带），无需安装、无需管理员权限。
 - 交付物：单文件 `dist\SimIme.exe`（拼音表等资源已内嵌），可选 `dist\SimIme.Engine.dll`（引擎，供测试/集成）。
 - 不注册系统输入法：拼音转汉字完全由程序内部决定，不影响你系统里已有的输入法。
-
+  （使用dsh+deepseekv4.1flash完成此项目，不保证任何后续效果)
 ---
 
 ## 1. 功能说明
