@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SimIme 拟人化中文输入器 · 使用说明</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: "Microsoft YaHei UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+         max-width: 940px; margin: 0 auto; padding: 28px 20px 90px; line-height: 1.8; color: #1a1a1a; background: #fff; }
+  h1 { font-size: 27px; border-bottom: 3px solid #2b6cb0; padding-bottom: 10px; margin-bottom: 6px; }
+  h2 { font-size: 21px; margin-top: 38px; padding-left: 10px; border-left: 5px solid #2b6cb0; }
+  h3 { font-size: 17px; margin-top: 24px; color: #2b6cb0; }
+  p, li { font-size: 15.5px; }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 14.5px; }
+  th, td { border: 1px solid #d0d7de; padding: 7px 11px; text-align: left; vertical-align: top; }
+  th { background: #f2f6fa; }
+  code { background: #f2f4f7; padding: 1px 6px; border-radius: 4px; font-family: Consolas, "Courier New", monospace; font-size: 13.5px; }
+  kbd { background:#2b6cb0; color:#fff; border-radius:4px; padding:1px 7px; font-size:13.5px; font-family:inherit; }
+  blockquote { margin: 18px 0; padding: 12px 18px; background: #f6f9fc; border-left: 5px solid #2b6cb0; border-radius: 4px; }
+  nav { background: #fafbfc; border: 1px solid #e1e6eb; border-radius: 8px; padding: 14px 20px; margin: 18px 0 6px; }
+  nav a { color: #2b6cb0; text-decoration: none; margin-right: 16px; white-space: nowrap; }
+  nav a:hover { text-decoration: underline; }
+  .warn { background: #fff8e6; border-left-color: #e0a800; }
+  footer { margin-top: 46px; padding-top: 14px; border-top: 1px solid #e1e6eb; color: #666; font-size: 13.5px; }
+  @media print { nav { display: none; } body { max-width: none; } }
+</style>
+</head>
+<body>
+
+<h1>SimIme 拟人化中文输入器 · 使用说明</h1>
+<blockquote><strong>一句话</strong>：把一段中文粘进去，它退到后台；你切到目标窗口按 <kbd>F9</kbd>，它就锁定你的插入点、像真人一样一个字一个字地打出来 —— 带随机快慢、思考停顿、偶尔打错再退格改回，最后静默待机，只留托盘图标。</blockquote>
+
+<nav>
+  <a href="#s1">1 启动</a><a href="#s2">2 第一次使用</a><a href="#s3">3 热键表</a><a href="#s4">4 悬浮条</a><a href="#s5">5 停止与唤醒</a><a href="#s6">6 改手感</a><a href="#s7">7 学习用词</a><a href="#s8">8 更新词典</a><a href="#s9">9 排障</a><a href="#s10">10 权限</a><a href="#s11">11 已知限制</a><a href="#s12">12 文件说明</a>
+</nav>
+
+<section id="s1"><h2>1. 这是什么 / 怎么启动</h2>
+<ul>
+  <li><strong>免安装</strong>：整个程序就在一个文件夹里，双击 <code>SimIme.exe</code> 即可。</li>
+  <li><strong>托盘常驻、任务栏不出现</strong>：启动后只在右下角通知区域出现一个 SimIme 图标；鼠标悬浮能看到当前状态。</li>
+  <li><strong>单实例</strong>：重复双击 exe 不会开出第二个，只会<strong>唤醒已在运行的那个</strong>（换新版本前要先从托盘退出旧实例）。</li>
+</ul></section>
+
+<section id="s2"><h2>2. 第一次使用：三步</h2>
+<ol>
+  <li><strong>双击 <code>SimIme.exe</code></strong> → 托盘出现 SimIme 图标（任务栏不会出现按钮）。</li>
+  <li><strong>双击托盘图标</strong>（或右键 →「唤醒 / 显示主界面」）→ 打开主界面，<strong>把要打的中文粘进去</strong>，点「<strong>确认开始</strong>」。</li>
+  <li>主界面<strong>自动隐藏</strong>。切到你真正要打字的窗口（记事本 / 浏览器 / 微信…），<strong>把光标放到要开始的位置</strong>，按一下 <kbd>F9</kbd>。</li>
+</ol>
+<p>→ 程序开始逐个词地打；打完最后一个字后<strong>自动静默</strong>（悬浮条消失、热键注销、进程仍在托盘待命）。</p>
+</section>
+
+<section id="s3"><h2>3. 热键表</h2>
+<table><thead><tr><th>热键</th><th>作用</th><th>说明</th></tr></thead><tbody>
+<tr><td><kbd>F9</kbd></td><td><strong>开始 / 二次确认</strong></td><td>切到目标窗口、光标就位后按它才开始；避免误触</td></tr>
+<tr><td><kbd>F8</kbd></td><td><strong>点击定位</strong></td><td>按 F8 后有一个倒计时，用鼠标点一下目标输入框，程序按点击位置重新定位插入点</td></tr>
+<tr><td><kbd>F12</kbd></td><td><strong>停止</strong></td><td>随时中止。若 F12 被别的软件占用，程序会<strong>自动兜底</strong>到 F10/F11/F7/F6（顺序见 <code>config.json</code> 的 <code>Hotkeys.StopKeyCandidates</code>）</td></tr>
+<tr><td>托盘右键</td><td>唤醒 / 进入静默 / 退出</td><td>静默后热键已注销，只能从托盘唤醒</td></tr>
+</tbody></table>
+<blockquote class="warn">小提示：日志里若出现 <code>F12 被占用，停止键自动切到 F10</code>，说明兜底生效了 —— 此时你按 <kbd>F10</kbd> 就是停止。</blockquote>
+</section>
+
+<section id="s4"><h2>4. 悬浮条怎么看</h2>
+<p>打字时屏幕左下角（跟随插入点）会有一个<strong>像真输入法一样的悬浮条</strong>：</p>
+<ul>
+  <li><strong>上行</strong>：正在打的<strong>拼音</strong>，逐字母长出来（蓝色加粗带下划线）—— 这是模拟输入法，<strong>不会把拼音打进文档里</strong>。</li>
+  <li><strong>下行</strong>：带序号的<strong>候选词</strong>，当前选中的那个浅蓝高亮。</li>
+  <li><strong>打错再改的时候</strong>：先看到拼音被敲出来 → 候选高亮在那个错词上 → 错字落屏 → 退格删掉 → 重新敲正确拼音 → 正确字落屏（全程看得见）。</li>
+  <li>悬浮条<strong>永不抢焦点</strong>，不会打断你在目标窗口里的输入。</li>
+</ul></section>
+
+<section id="s5"><h2>5. 停止、暂停与唤醒</h2>
+<ul>
+  <li><strong>中途停止</strong>：按停止键（默认 F12，被占用则自动兜底）。</li>
+  <li><strong>目标窗口失焦时</strong>：默认<strong>暂停</strong>（<code>Behavior.FocusLostPolicy: Pause</code>）。</li>
+  <li><strong>打完自动静默</strong>：悬浮条收起、<strong>热键全部注销</strong>（这时 F9/F8 不再被占用）、进程继续留在托盘。</li>
+  <li><strong>再次使用</strong>：双击托盘图标 → 窗口回来 → 再粘一段 → 重复第 2 节。</li>
+</ul></section>
+
+<section id="s6"><h2>6. 想改手感？改 <code>config.json</code></h2>
+<p>用记事本打开 <code>dist/config.json</code>，<strong>改完重启程序生效</strong>。</p>
+<h3>打字速度与节奏（Engine.Rhythm）</h3>
+<table><thead><tr><th>想要的效果</th><th>参数</th><th>现在是</th></tr></thead><tbody>
+<tr><td>每个字更快 / 更慢</td><td><code>CharDelayMinMs</code> / <code>CharDelayMaxMs</code></td><td>90~260ms</td></tr>
+<tr><td>快慢变化更大 / 更均匀</td><td><code>SpeedVariancePct</code></td><td>35%</td></tr>
+<tr><td>偶尔连打一段（更像真人）</td><td><code>BurstChancePct</code></td><td>12%</td></tr>
+<tr><td>思考停顿更短 / 更长</td><td><code>ThinkPauseMinMs</code> / <code>ThinkPauseMaxMs</code></td><td>500~2500ms</td></tr>
+<tr><td>多久思考一次</td><td><code>ThinkEveryMinChars</code> / <code>ThinkEveryMaxChars</code></td><td>每 8~20 字</td></tr>
+<tr><td>休息（长停）时长</td><td><code>RestPauseMinMs</code> / <code>RestPauseMaxMs</code></td><td>3000~8000ms</td></tr>
+<tr><td>多久休息一次</td><td><code>RestEveryMinSentences</code> / <code>RestEveryMaxSentences</code></td><td>每 2~5 句</td></tr>
+<tr><td>按下开始后多久真正动手</td><td><code>StartupDelayMs</code></td><td>1500ms</td></tr>
+<tr><td>标点前后额外停顿</td><td><code>PunctuationExtraMinMs</code> / <code>PunctuationExtraMaxMs</code></td><td>80~400ms</td></tr>
+</tbody></table>
+<h3>悬浮条（Inject）</h3>
+<table><thead><tr><th>想要的效果</th><th>参数</th><th>现在是</th></tr></thead><tbody>
+<tr><td>拼音字母打字速度</td><td><code>PinyinLetterMs</code></td><td>110ms/字母</td></tr>
+<tr><td>候选高亮停留时长</td><td><code>SelectHighlightMs</code></td><td>220ms</td></tr>
+<tr><td>显示几个候选</td><td><code>CandidateMax</code></td><td>6</td></tr>
+<tr><td>标点之前的停顿</td><td><code>BeforePunctPauseMs</code></td><td>200ms</td></tr>
+<tr><td>短拼音最少看得见多久</td><td><code>MinComposeVisibleMs</code></td><td>260ms</td></tr>
+<tr><td>打错后停多久才删</td><td><code>BeforeDeletePauseMs</code></td><td>500ms</td></tr>
+<tr><td>删除每个字的速度</td><td><code>DeleteCharMs</code></td><td>180ms/字</td></tr>
+<tr><td>删完停多久再重打</td><td><code>AfterDeletePauseMs</code></td><td>250ms</td></tr>
+<tr><td>重打后停多久再选词</td><td><code>AfterRetypePauseMs</code></td><td>400ms</td></tr>
+<tr><td>一个词一个词走（默认）</td><td><code>BufferMaxPhrases</code></td><td>1（改成 &gt;1 会攒几个词一次落屏）</td></tr>
+</tbody></table>
+<h3>错字（Engine.Typo）—— 想要完全不出错字就把 <code>Enabled</code> 改 false</h3>
+<table><thead><tr><th>错字类型</th><th>参数</th><th>现在</th><th>说明</th></tr></thead><tbody>
+<tr><td>总开关</td><td><code>Enabled</code></td><td>true</td><td>改 false 后<strong>一个错字都不出</strong></td></tr>
+<tr><td>同音字打错</td><td><code>HomophonePct</code></td><td>4%</td><td>打「抖」打成「斗」</td></tr>
+<tr><td>前后鼻音打错</td><td><code>NasalPct</code></td><td>3%</td><td>in/ing、an/ang 之类</td></tr>
+<tr><td>句首重打</td><td><code>HeadRedoPct</code></td><td>15%</td><td>打错了再退格重打（多打的字与后文同音）</td></tr>
+<tr><td>漏字回填</td><td><code>OmissionPct</code></td><td>2%</td><td>漏字后补回来</td></tr>
+<tr><td>整词同音错词</td><td><code>WordHomophonePct</code></td><td>2%</td><td>打「一轮」出「议论」再改回</td></tr>
+<tr><td>相邻键误按</td><td><code>KeyboardSlipPct</code></td><td>3%</td><td>拼音相邻键打错</td></tr>
+<tr><td>重复输入类</td><td><code>RepeatWordPct</code></td><td><strong>0（已关）</strong></td><td>同一个词打两遍就是它，默认关闭</td></tr>
+<tr><td>每句最多几个错字</td><td><code>MaxTyposPerSentence</code></td><td>2</td><td></td></tr>
+</tbody></table>
+<h3>其它（Behavior）</h3>
+<table><thead><tr><th>参数</th><th>现在</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>LogEnabled</code></td><td>true</td><td>是否写运行日志</td></tr>
+<tr><td><code>BarVerbose</code></td><td>false</td><td>排障模式：悬浮条会显示等待/删除中等过程文字（平时请留 false）</td></tr>
+<tr><td><code>LearnUserWords</code></td><td>true</td><td>是否根据你的输入习惯学习用户词组</td></tr>
+<tr><td><code>ClickLocateCountdownMs</code></td><td>3000</td><td>按 F8 后点鼠标定位的倒计时</td></tr>
+</tbody></table>
+</section>
+
+<section id="s7"><h2>7. 它会学习你的用词（用户词表）</h2>
+<ul>
+  <li>你打的<strong>词块</strong>会被记下来，出现次数够了（默认 3 次，<code>Engine.UserWordMinCount</code>）就成为一个<strong>用户词组</strong>，之后切分和候选会优先用它。</li>
+  <li>数据存在 <code>dist/habits.dat</code>；<strong>双击 <code>看用户词表.cmd</code></strong>（或 <code>words.cmd</code>）可以查看当前学了哪些词。</li>
+  <li>想从零开始：退出程序，删掉 <code>habits.dat</code> / <code>habits.version</code> / <code>habits_merges.tsv</code> 三个文件再启动即可。</li>
+</ul></section>
+
+<section id="s8"><h2>8. 更新词典（可选，联网）</h2>
+<ul>
+  <li>主界面里有「<strong>联网更新词典</strong>」按钮（也可双击 <code>更新词典.cmd</code> / <code>update-dict.cmd</code>）：从镜像下载一份<strong>补充词表</strong>（约 4.6 万条），写进 <code>dist/dict_extra.tsv</code>，<strong>不需要重新编译</strong>。</li>
+  <li>词表优先级：<strong>用户词组 &gt; 外部词表（dict_extra.tsv）&gt; 内置词典</strong>（全部按最长匹配）。</li>
+  <li>下载地址在 <code>Behavior.DictMirror</code>（默认阿里云镜像）；失败不影响使用（会写日志说明原因）。</li>
+</ul></section>
+
+<section id="s9"><h2>9. 出问题时怎么排（按顺序试）</h2>
+<ol>
+  <li><strong>按 F9 没反应</strong>：先确认目标窗口是<strong>前台</strong>、光标在输入框里；再确认程序<strong>没在静默状态</strong>（双击托盘唤醒）。</li>
+  <li><strong>F9/F8 被别的软件占了</strong>：改 <code>config.json</code> 的 <code>Hotkeys.StartKey</code> / <code>LocateKey</code>（键码：F8=119、F9=120、F10=121、F11=122、F12=123），重启程序。</li>
+  <li><strong>打了字但没进目标窗口</strong>：多半是<strong>权限</strong>问题（见第 10 节）。双击 <code>权限自检.cmd</code> 看结论。</li>
+  <li><strong>记事本里显示成方框（□ □ □）</strong>（新版记事本）：这是<strong>记事本自己的字体回退问题</strong>，<strong>不是内容错了</strong> —— 按 Ctrl+A、Ctrl+C 粘到别处，或直接看窗口<strong>标题栏</strong>（标题栏里是正常中文）；也可把记事本字体换成「微软雅黑」。</li>
+  <li><strong>想验证到底注入对了没有</strong>：双击 <code>自检落屏.cmd</code>（<code>verify-ime.cmd</code>），它会往指定窗口打一段测试文本并<strong>回读比对</strong>。</li>
+  <li><strong>想看它每一步在干什么</strong>：<code>dist/error.log</code> 是运行日志（重建版本时自动归档保留最近 3 份，不会丢）。</li>
+  <li><strong>悬浮条外观不对劲</strong>：双击 <code>看悬浮条外观.cmd</code>（<code>bartest.cmd</code>），它按真实运行时的构造依次演示悬浮条的所有正常状态。</li>
+</ol></section>
+
+<section id="s10"><h2>10. 权限说明（很重要）</h2>
+<ul>
+  <li>程序<strong>默认普通权限运行</strong>。Windows 的 UIPI 机制<strong>不允许普通权限程序往管理员权限的窗口里注入</strong>（会被系统静默丢弃，程序也不知道）。</li>
+  <li>要给管理员窗口打字：<strong>右键 <code>SimIme-Admin.exe</code> → 以管理员身份运行</strong>。</li>
+  <li>不确定当前会不会被拦：双击 <code>权限自检.cmd</code>，它会打印自身完整性 / 目标完整性 / 结论。</li>
+</ul></section>
+
+<section id="s11"><h2>11. 已知限制（如实列出）</h2>
+<ol>
+  <li><strong>新版记事本（带格式工具栏）在某些字体下把中文画成方框</strong> —— 记事本的字形回退问题，<strong>内容是对的</strong>（看标题栏或粘出来即可验证）。</li>
+  <li><strong>F12 被别的软件占用时</strong>，停止键会自动兜底到 F10（顺序可在 config 改）。</li>
+  <li><strong>标点直接上屏</strong>，不经悬浮条的组串与候选 —— 这与真输入法一致（日志里有一行「标点直接上屏（不经组串）」）。</li>
+  <li><strong>普通权限对管理员窗口注入会被 UIPI 静默丢弃</strong>（见第 10 节）。</li>
+  <li><strong>重复输入类错字（同一个词打两遍）默认关闭</strong>（<code>Typo.RepeatWordPct = 0</code>）。</li>
+  <li><strong>换新版本前请先从托盘退出旧实例</strong>（单实例保护：新双击只会唤醒旧的）。</li>
+</ol></section>
+
+<section id="s12"><h2>12. dist 里的文件都是什么</h2>
+<table><thead><tr><th>文件</th><th>作用</th></tr></thead><tbody>
+<tr><td><code>SimIme.exe</code></td><td>主程序（托盘 + 悬浮条 + 注入）</td></tr>
+<tr><td><code>SimIme.Engine.dll</code></td><td>引擎（切词、拼音、节奏、错字计划）</td></tr>
+<tr><td><code>SimIme-Admin.exe</code></td><td>以管理员身份启动主程序的启动器</td></tr>
+<tr><td><code>config.json</code></td><td><strong>你的全部设置</strong>（第 6 节）</td></tr>
+<tr><td><code>habits.dat</code> / <code>habits.version</code> / <code>habits_merges.tsv</code></td><td>你的<strong>学习数据</strong>（第 7 节）</td></tr>
+<tr><td><code>dict_extra.tsv</code></td><td>外部补充词表（第 8 节）</td></tr>
+<tr><td><code>error.log</code> + <code>error.log.old-*</code></td><td>运行日志与历史归档（排障用）</td></tr>
+<tr><td><code>自检落屏.cmd</code> / <code>verify-ime.cmd</code></td><td>打一段测试文本并回读比对</td></tr>
+<tr><td><code>看悬浮条外观.cmd</code> / <code>bartest.cmd</code></td><td>演示悬浮条的全部正常状态</td></tr>
+<tr><td><code>看排障样例.cmd</code></td><td>展示日志里正常 / 异常的样子</td></tr>
+<tr><td><code>看用户词表.cmd</code> / <code>words.cmd</code></td><td>查看学到的用户词组</td></tr>
+<tr><td><code>权限自检.cmd</code></td><td>UIPI / 完整性检查</td></tr>
+<tr><td><code>更新词典.cmd</code> / <code>update-dict.cmd</code></td><td>联网更新补充词表</td></tr>
+</tbody></table>
+</section>
+
+<footer>日常只需要记住三个动作 —— <strong>粘文本 → 切窗口 → <kbd>F9</kbd></strong>；想停按 <kbd>F12</kbd>（或它兜底的键）；其余都可以不管。<br>本说明随程序放在同一文件夹：<code>使用说明.html</code>（本页）与 <code>使用说明.md</code>（纯文本版）。</footer>
+
+</body>
+</html>

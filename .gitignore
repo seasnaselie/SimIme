@@ -1,0 +1,32 @@
+# 构建产物与交付目录
+dist/
+
+# 开发/验证工作目录（含大体积临时文件）
+_devA/
+_devB/
+_devC/
+_verify/
+
+# 运行期数据（含个人设置与学习记录）
+config.json
+habits.dat
+habits.version
+habits_merges.tsv
+dict_extra.tsv
+*.log
+*.log.old-*
+
+# 二进制与编译中间产物
+*.exe
+*.dll
+*.pdb
+*.old-*
+obj/
+stage/
+*.user
+
+# 编辑器/系统
+.vs/
+.vscode/
+Thumbs.db
+desktop.ini

@@ -1,0 +1,7 @@
+# 统一换行：本项目的源码与脚本都是 LF（构建/静态检查按此验证过）
+* text=auto eol=lf
+
+# 二进制/数据文件不做行尾转换
+*.tsv -text
+*.dll binary
+*.exe binary
